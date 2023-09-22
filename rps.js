@@ -12,9 +12,10 @@ function getComputerChoice(){
 }
 
 /* Plays a single round of rock, paper, scissors */
-function playRound(playerSelection = "rock", computerSelection = getComputerChoice()){
-    /* Set playerSelection to appropriate format*/
-    let playerChoice = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+function playRound(e, computerSelection = getComputerChoice()){
+
+    /* Set playerChoice based on button pressed */
+    let playerChoice = e.target.textContent;
     console.log(playerChoice + " vs " + computerSelection);
 
     /* Win/Loss Strings */
@@ -44,10 +45,9 @@ function playRound(playerSelection = "rock", computerSelection = getComputerChoi
     } else {
         return "Invalid player selection!";
     }
+
 }
 
-function game(){
-    for(let i = 0; i < 5; i ++) {
-        console.log(playRound(prompt("Rock, Paper, Scissors?")));
-    }
-}
+const choices = Array.from(document.querySelectorAll('.choice'));
+console.log(choices);
+choices.forEach(choice => choice.addEventListener('click', playRound));
