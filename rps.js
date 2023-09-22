@@ -64,6 +64,13 @@ function playRound(e, computerSelection = getComputerChoice()){
         result.textContent = "Invalid player selection!";
     }
 
+    score.textContent = playerScore + ":" + cpuScore;
+
+    if(playerScore >= 5){
+        result.textContent = "You won the game!";
+    } else if (cpuScore >= 5) {
+        result.textContent = "You loss the game!";
+    }
 }
 
 
