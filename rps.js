@@ -1,4 +1,5 @@
-let score = 0;
+let playerScore = 0;
+let cpuScore = 0;
 
 const choices = Array.from(document.querySelectorAll('.choice'));
 console.log(choices);
@@ -17,12 +18,18 @@ function getComputerChoice(){
     }
 }
 
+function win(playerChoice, computerSelection){
+    playerScore += 1;
+    return "You Win! " + playerChoice + " beats " + computerSelection;
+}
+
+function lose(playerChoice, computerSelection){
+    cpuScore += 1;
+    return "You Lose! " + computerSelection + " beats " + playerChoice;
+}
+
 /* Plays a single round of rock, paper, scissors */
 function playRound(e, computerSelection = getComputerChoice()){
-
-    /* Win/Loss Strings */
-    const win = "You Win! ";
-    const lose = "You Lose! ";
 
     //Query Selectors
     const vs = document.querySelector('.vs');
@@ -37,21 +44,21 @@ function playRound(e, computerSelection = getComputerChoice()){
         result.textContent = "Draw!";
     } else if (playerChoice == "Rock") {
         if (computerSelection == "Scissors") {
-            result.textContent = win + playerChoice + " beats " + computerSelection;
+            result.textContent = win(playerChoice, computerSelection);
         } else {
-            result.textContent = lose + computerSelection + " beats " + playerChoice;
+            result.textContent = lose(playerChoice, computerSelection);
         }
     } else if (playerChoice == "Paper") {
         if (computerSelection == "Rock") {
-            result.textContent = win + playerChoice + " beats " + computerSelection;
+            result.textContent = win(playerChoice, computerSelection);
         } else {
-            result.textContent = lose + computerSelection + " beats " + playerChoice;
+            result.textContent = lose(playerChoice, computerSelection);
         }
     } else if (playerChoice == "Scissors") {
         if (computerSelection == "Paper") {
-            result.textContent = win + playerChoice + " beats " + computerSelection;
+            result.textContent = win(playerChoice, computerSelection);
         } else {
-            result.textContent = lose + computerSelection + " beats " + playerChoice;
+            result.textContent = lose(playerChoice, computerSelection);
         }
     } else {
         result.textContent = "Invalid player selection!";
