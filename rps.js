@@ -1,6 +1,9 @@
 let playerScore = 0;
 let cpuScore = 0;
 
+const resetBtn = document.querySelector('.reset');
+resetBtn.addEventListener('click', reset);
+
 const choices = Array.from(document.querySelectorAll('.choice'));
 console.log(choices);
 choices.forEach(choice => choice.addEventListener('click', playRound));
@@ -26,6 +29,15 @@ function win(playerChoice, computerSelection){
 function lose(playerChoice, computerSelection){
     cpuScore += 1;
     return "You Lose! " + computerSelection + " beats " + playerChoice;
+}
+
+function reset() {
+    const score = document.querySelector('.score');
+
+    playerScore = 0;
+    cpuScore = 0;
+
+    score.textContent = playerScore + ":" + cpuScore;
 }
 
 /* Plays a single round of rock, paper, scissors */
